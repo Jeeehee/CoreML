@@ -6,9 +6,16 @@ Core ML Tools 4.0부터 `Unified Converter API` 를 사용해, 신경망 모델�
 <br>
 
 ## 방법
-> [참고 문서 - Core ML Tools guides](https://coremltools.readme.io/docs/tensorflow-2)
+> [참고 문서1 - Core ML Tools guides](https://coremltools.readme.io/docs/tensorflow-2)<br>
+> [참고 문서2 - Installing Core ML Tools](https://coremltools.readme.io/docs/installation)
 
-1. TensorFlow2 Model을 변환하기 위해선, 아래 리스트 중 하나를 준비해야 합니다.    
+1. 먼저 위의 참고 문서2 를 참조해 가상 환경을 구축하고, Core ML Tools를 install 합니다.  
+  
+    구축이 되어 있다면, `pip install coremltools` 명령어만 입력
+
+<br>
+
+2. TensorFlow2 Model을 변환하기 위해선, 아래 리스트 중 하나를 준비해야 합니다.    
   - tf.keras.Model
   - HDF5 file path (.h5)
   - SavedModel directory path
@@ -18,7 +25,7 @@ Core ML Tools 4.0부터 `Unified Converter API` 를 사용해, 신경망 모델�
 
 <br>
 
-2. 아래와 같이 `.h5` 파일을 load해 변환할 수 있습니다.
+3. 아래와 같이 `.h5` 파일을 load해 변환할 수 있습니다.
 
 ```python
 import coremltools as ct 
@@ -32,7 +39,9 @@ tf_model = tf.keras.applications.Xception(weights="imagenet",
 model = ct.convert(tf_model)
 ```
 
-3. 아래와 같이 Sequential Model을 변환할 수도 있습니다.
+<br>
+
+4. 아래와 같이 Sequential Model을 변환할 수도 있습니다.
 
 ```python
 import tensorflow as tf
@@ -66,3 +75,9 @@ mlmodel = ct.convert('tf_keras_model.h5', convert_to="mlprogram")
 - 연속적인 입력과 연속적인 출력을 생성하는 모델입니다.
 - 음성인식과 같은 오디오 인식, 입/출력 길이가 다른 단어 인식인 기계 번역, 비디오 인식 등이 있습니다.
 - 제 프로젝트인 `HandLink` 는 비디오를 인식해 모델을 생성시키는 것이기에, 해당 로직으로 변환해주었습니다.
+
+<br>
+
+아래와 같이 뜨면, 완료!
+
+<img width="1219" alt="스크린샷 2022-11-23 오전 11 32 31" src="https://user-images.githubusercontent.com/92635121/203458961-905615bc-0cf6-4299-96b9-fc77dfb17a6f.png">
